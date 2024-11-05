@@ -7,10 +7,9 @@ class DB
     {
         try {
             if (self::$conn == null) {
-                // Carga la configuración desde el archivo config.php
                 $config = include 'config.php';
                 self::$conn = new PDO(
-                    "mysql:host=" . $config['serverName'] . ";dbname=" . $config['dbName'],
+                    "mysql:host=" . $config['ServerName'] . ";dbname=" . $config['dbName'],
                     $config['username'],
                     $config['password']
                 );

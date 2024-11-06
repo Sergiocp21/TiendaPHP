@@ -1,7 +1,7 @@
 <?php
 
 require_once '../DbConfig/Db.php';
-require_once './DTOProducto.php';
+require_once '../Modelo/DTOProducto.php';
 
 class DAOProducto
 {

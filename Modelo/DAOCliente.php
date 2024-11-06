@@ -1,7 +1,7 @@
 <?php
 
 require_once '../DbConfig/Db.php';
-require_once './DTOCliente.php';
+require_once '../Modelo/DTOCliente.php';
 
 class DAOCliente
 {
@@ -47,16 +47,35 @@ class DAOCliente
         }
     }
 
+    public function getClienteByNickname($nickname)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM cliente WHERE nickname = :nickname");
+            $stmt->execute([':nickname' => $nickname]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                $cliente = new DTOCliente($row['id'], $row['nombre'], $row['apellido'], $row['nickname'], $row['password'], $row['telefono'], $row['domicilio']);
+                return $cliente;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function addCliente(DTOCliente $cliente)
     {
         try {
-            $stmt = $this->db->prepare("INSERT INTO cliente (nombre, apellido, nickname, password, telefono, domicilio) VALUES (:nombre, :apellidos, :nickname, :password, :telefono, :domicilio)");
+            $stmt = $this->db->prepare("INSERT INTO cliente (nombre, apellido, nickname, password, telefono, domicilio) VALUES (:nombre, :apellido, :nickname, :password, :telefono, :domicilio)");
             $stmt->execute([
                 ':nombre' => $cliente->getNombre(),
                 ':apellido' => $cliente->getApellido(),
                 ':nickname' => $cliente->getNickname(),
-                ':password' => $cliente->getTelefono(),
-                ':telefono' => $cliente->getDomicilio(),
+                ':password' => $cliente->getPassword(),
+                ':telefono' => $cliente->getTelefono(),
+                ':domicilio' => $cliente->getDomicilio()
             ]);
             return $this->db->lastInsertId();
         } catch (PDOException $e) {

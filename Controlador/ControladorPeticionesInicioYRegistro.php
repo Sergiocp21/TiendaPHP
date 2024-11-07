@@ -66,6 +66,8 @@ switch ($accion) {
             }
 
         }
+
+
         break;
 
     case "Iniciar Sesion": //Viene de la vista Inicio Sesion
@@ -75,8 +77,17 @@ switch ($accion) {
                 $_SESSION['cliente'] = $cliente;
                 header("Location: ../Vista/index.php");
             } else {
-                header("Location: ../Vista/VistaInicioSesion.php?error=Usuario o contraseña incorrectos");
+                header("Location: ../Vista/VistaInicioSesion.php?error=Usuario o contrasena incorrectos");
             }
         }
+
+        break;
+
+    case "Cerrar Sesion":
+
+        session_destroy();
+        header("Location: ../Vista/VistaInicioSesion.php");
+
+
         break;
 }

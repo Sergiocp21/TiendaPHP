@@ -1,5 +1,5 @@
 <?php
-require '../Modelo/DAOProducto.php';
+require '../Modelo/DAOCliente.php';
 class ControladorCliente
 {
     private $daoCliente;
@@ -19,7 +19,13 @@ class ControladorCliente
         return $this->daoCliente->getClienteById($id);
     }
 
-    public function addCLiente($nombre, $apellido, $nickname, $password, $telefono, $domicilio){
+    public function getClienteByNickname($nickname)
+    {
+        return $this->daoCliente->getClienteByNickname($nickname);
+    }
+
+    public function addCLiente($nombre, $apellido, $nickname, $password, $telefono, $domicilio)
+    {
         $cliente = new DTOCliente(null, $nombre, $apellido, $nickname, $password, $telefono, $domicilio);
 
         return $this->daoCliente->addCliente($cliente);

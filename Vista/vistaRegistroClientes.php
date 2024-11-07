@@ -19,7 +19,7 @@
     <h2>Registro</h2>
     <form action="../Controlador/ControladorPeticionesInicioYRegistro.php" method="post">
 
-        <label for nombre>Nombre</label>
+        <label for="nombre" >Nombre</label>
         <input type="text" name="nombre">
 
         <label for="apellido">Apellido</label>

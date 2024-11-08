@@ -31,7 +31,7 @@
 </nav>
 
 <h2>Añadir Producto</h2>
-<form action="../Controlador/ControladorProducto.php.php" method="post">
+<form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post">
 
     <label for="nombre" >Nombre</label>
     <input type="text" name="nombre">
@@ -40,18 +40,12 @@
     <input type="text" name="descripcion">
 
     <label for="precio">Precio en €</label>
-    <input type="text" name="nickname">
+    <input type="text" name="precio">
 
     <? //<input type="file" id="file-input" accept=".png"> <br><br>?>
 
     <input type="submit" value="Añadir Producto" name="gestionProductos">
 </form>
-
-<?php
-if (isset($_GET['errores'])) {
-    echo "<p style='color:red'>" . $_GET['errores'] . "</p>";
-}
-?>
 
 <footer class="footer">
     <p> Tienda Online - Sergio Carvajal y  Oscar Lara</p>

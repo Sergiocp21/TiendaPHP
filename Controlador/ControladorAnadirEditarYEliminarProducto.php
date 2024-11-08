@@ -30,6 +30,9 @@ function comprobar($campo)
             }
     }
 }
+
+$errores = "";
+
 switch ($accion) {
     case "Añadir Producto":
         //comprueba que estan todos los datos introducidos
@@ -62,16 +65,20 @@ switch ($accion) {
                         $controladorProducto->updateProduct($_REQUEST['idProduct'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
                         header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&exito=Producto editado correctamente");
                     } else {
-                        header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&error=El precio debe ser un valor positivo");
+                        $errores .= "El precio debe se un número positivo";
                     }
                 } else {
-                    header("Location: ../Vista/VistaEditarProducto.php?idProd=" . $_REQUEST['idProduct'] . "&error=Rellena la descripción");
+                    $errores .= "Rellena la descripción";
                 }
             } else {
-                header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&error=EL nombre no puede estar vacío");
+                $errores .= "El nombre no puede estar vacío";
             }
         } else {
-            header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&error=Error al editar el producto");
+            $errores .= "Error al editar el producto";
+        }
+
+        if ($errores != "") {
+            header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&error=" . $errores);
         }
         break;
 }

@@ -1,5 +1,7 @@
 <?php
 require '../Modelo/DAOProducto.php';
+
+
 class ControladorProducto
 {
     private $daoProducto;

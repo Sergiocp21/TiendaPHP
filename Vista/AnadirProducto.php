@@ -44,7 +44,7 @@
 
     <? //<input type="file" id="file-input" accept=".png"> <br><br>?>
 
-    <input type="submit" value="Introducir en bddd" name="introducir">
+    <input type="submit" value="Añadir Producto" name="gestionProductos">
 </form>
 
 <?php

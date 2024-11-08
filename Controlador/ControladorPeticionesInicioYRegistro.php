@@ -39,7 +39,7 @@ function comprobar($campo, $controladorCliente)
 
 
 switch ($accion) {
-    case "registro": //Viene de la vista RegistroUsuario
+    case "registro": //Viene de la vista RegistroCLientes
         if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['password']) && isset($_REQUEST['domicilio']) && isset($_REQUEST['telefono']) && isset($_REQUEST['nickname'])) {
             $errores = "";
             if (!comprobar("nombre", $controladorCliente)) {

@@ -9,11 +9,6 @@
     require_once"../Modelo/DTOCliente.php";
     require_once '../Controlador/ControladorCliente.php';
     session_start();
-    if (!isset($_SESSION['cliente'])) {
-        header("Location: ../Vista/VistaInicioSesion.php?error=Debes iniciar sesion primero");
-    } else {
-        echo "Bienvenido " . $_SESSION['cliente']->getNombre();
-    }
     ?>
 </head>
 <body>
@@ -25,15 +20,22 @@
 <nav class="navbar">
   <ul>
     <li><a href="index.html">Inicio</a></li>
+      <li><a href="AnadirProducto.php">Añadir Producto</a></li>
     <li><a href="FormularioModificar.php">Modificar Producto</a></li>
     <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
-    <li><a href="FormularioAñadir.php">Añadir Producto</a></li>
     <li><a href="carrito.php">Carrito</a></li>
     <li><a href="InfoCliente.php">Cliente</a> </li>
       </ul>
     </li>
   </ul>
 </nav>
+<?php
+if (!isset($_SESSION['cliente'])) {
+header("Location: ../Vista/VistaInicioSesion.php?error=Debes iniciar sesion primero");
+} else {
+echo "Bienvenido " . $_SESSION['cliente']->getNombre();
+}
+?>
 
 <footer class="footer">
   <p> Tienda Online - Sergio Carvajal y  Oscar Lara</p>

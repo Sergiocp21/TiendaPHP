@@ -19,7 +19,7 @@
 
 <nav class="navbar">
     <ul>
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.php">Inicio</a></li>
         <li><a href="AnadirProducto.php">Añadir Producto</a></li>
         <li><a href="FormularioModificar.php">Modificar Producto</a></li>
         <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
@@ -45,6 +45,11 @@
     <? //<input type="file" id="file-input" accept=".png"> <br><br>?>
 
     <input type="submit" value="Añadir Producto" name="gestionProductos">
+    <?php
+    if (isset($_GET['errores'])) {
+        echo "<p style='color:red'>" . $_GET['errores'] . "</p>";
+    }
+    ?>
 </form>
 
 <footer class="footer">

@@ -9,6 +9,10 @@
     require_once"../Modelo/DTOCliente.php";
     require_once '../Controlador/ControladorCliente.php';
     session_start();
+    if (!isset($_SESSION["Carrito"])) {
+
+        $_SESSION["Carrito"] = [];
+    }
     ?>
 </head>
 <body>
@@ -36,7 +40,9 @@ header("Location: ../Vista/VistaInicioSesion.php?error=Debes iniciar sesion prim
 echo "Bienvenido " . $_SESSION['cliente']->getNombre();
 }
 ?>
-
+<br><br><br>
+<h2 align="CENTER">SUPERMERCADO</h2>
+<section class="productos"
 
 
 <footer class="footer">

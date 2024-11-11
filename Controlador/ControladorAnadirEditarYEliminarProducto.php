@@ -7,10 +7,11 @@ $accion = $_REQUEST['gestionProductos'];
 
 function comprobar($campo)
 {
-
+    $controladorProducto = new ControladorProducto();
     switch ($campo) {
         case "nombre":
-            if ($_REQUEST['nombre'] == "") {
+            if ($_REQUEST['nombre'] == "" || $controladorProducto->getProductbyname($_REQUEST['nombre']) != null) {
+
                 return false;
             } else {
                 return true;
@@ -42,19 +43,21 @@ switch ($accion) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
                         $controladorProducto->addProduct($_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
-                        header("Location: ../Vista/AnadirProducto.php?exito = Producto añadido correctamente");
+                        header("Location: ../Vista/AnadirProducto.php?exito= Producto añadido correctamente");
                     } else {
-                        header("Location: ../Vista/AnadirProducto.php?Error = No has introducido el precio correctamente");
+                        $errores .= "El precio del producto no es valido ";
                     }
                 } else {
-                    header("Location: ../Vista/AnadirProducto.php?Error = No has introducido la descripcion correctamente");
+                    $errores .= "La descripcion del producto no es valido ";
                 }
             } else {
-                header("Location: ../Vista/AnadirProducto.php?Error = No has introducido el nombre correctamente");
+                $errores .= "El nombre del producto no es valido o ya hay un nombre igual en la base de datos";
             }
-        } else {
-            header("Location: ../Vista/AnadirProducto.php?Error = No has introducido todos los datos");
         }
+        if ($errores != "") {
+            header("Location: ../Vista/VistaEditarProducto.php?". "error=" . $errores);
+        }
+
         break;
 
     case "Editar Producto":

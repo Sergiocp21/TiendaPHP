@@ -34,20 +34,20 @@
 <form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post">
 
     <label for="nombre" >Nombre</label>
-    <input type="text" name="nombre">
+    <input type="text" name="nombre" required>
 
     <label for="descripcion">Descripción</label>
-    <input type="text" name="descripcion">
+    <input type="text" name="descripcion" required>
 
     <label for="precio">Precio en €</label>
-    <input type="text" name="precio">
+    <input type="text" name="precio" required>
 
     <? //<input type="file" id="file-input" accept=".png"> <br><br>?>
 
     <input type="submit" value="Añadir Producto" name="gestionProductos">
     <?php
-    if (isset($_GET['errores'])) {
-        echo "<p style='color:red'>" . $_GET['errores'] . "</p>";
+    if (isset($_GET['Error'])) {
+        echo "<p style='color:red'>" . $_GET['Error'] . "</p>";
     }
     ?>
 </form>

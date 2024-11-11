@@ -21,7 +21,7 @@
 
 <nav class="navbar">
     <ul>
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.php">Inicio</a></li>
         <li><a href="FormularioModificar.html">Modificar Producto</a></li>
         <li><a href="FormularioEliminar.html">Eliminar Producto</a></li>
         <li><a href="FormularioAñadir.html">Añadir Producto</a></li>

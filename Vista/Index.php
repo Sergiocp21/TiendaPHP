@@ -19,7 +19,7 @@
 
 <nav class="navbar">
   <ul>
-    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.php">Inicio</a></li>
       <li><a href="AnadirProducto.php">Añadir Producto</a></li>
     <li><a href="FormularioModificar.php">Modificar Producto</a></li>
     <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
@@ -36,6 +36,8 @@ header("Location: ../Vista/VistaInicioSesion.php?error=Debes iniciar sesion prim
 echo "Bienvenido " . $_SESSION['cliente']->getNombre();
 }
 ?>
+
+
 
 <footer class="footer">
   <p> Tienda Online - Sergio Carvajal y  Oscar Lara</p>

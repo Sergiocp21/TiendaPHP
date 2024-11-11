@@ -21,11 +21,11 @@
 
     <nav class="navbar">
         <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="FormularioModificar.php">Modificar Producto</a></li>
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="AnadirProducto.php">Añadir Producto</a></li>
+            <li><a href="vistaEditarProducto.php">Modificar Producto</a></li>
             <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
-            <li><a href="FormularioAñadir.php">Añadir Producto</a></li>
-            <li><a href="carrito.php">Carrito</a></li>
+            <li><a href="vistaCarrito.php">Carrito</a></li>
             <li><a href="InfoCliente.php">Cliente</a> </li>
         </ul>
         </li>

@@ -33,4 +33,14 @@ class Carrito
         return $this->id_productos;
     }
 
+    public function anadirProducto($id_producto)
+    {
+        array_push($this->id_productos, $id_producto);
+    }
+
+    public function eliminarProducto($id_producto)
+    {
+        unset($this->id_productos[$id_producto]);
+    }
+
 }

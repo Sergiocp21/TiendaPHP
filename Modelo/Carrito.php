@@ -7,10 +7,10 @@ class Carrito
     private $id_cliente;
     private $id_productos;
 
-    public function __construct($id_cliente, $id_producto)
+    public function __construct($id_cliente)
     {
         $this->id_cliente = $id_cliente;
-        array_push($this->id_productos, $id_producto);
+        $this->id_productos = array();
     }
 
     public function getId()

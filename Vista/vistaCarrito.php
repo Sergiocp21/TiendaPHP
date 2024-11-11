@@ -9,9 +9,11 @@
     <?php
     require_once("../Modelo/Carrito.php");
     require_once("../Controlador/ControladorProducto.php");
+    require_once("../Controlador/ControladorCarrito.php");
     session_start();
 
     $controladorProducto = new ControladorProducto();
+    $controladorCarrito = new ControladorCarrito();
     ?>
 </head>
 
@@ -32,19 +34,17 @@
     </nav>
 
     <h2>Carrito</h2>
-    <form action="../Controlador/ControladorPeticionesCarrito.php" method="post">
-        <input type="submit" name="vaciar" value="Vaciar Carrito">
-    </form>
     <section class="productos">
         <?php
         if (isset($_SESSION['Carrito'])) {
-            if (count($_SESSION['Carrito']->getIdProductos) > 0) {
+            $productos = $controladorCarrito->getIdProducts();
+            if (count($productos) > 0) {
                 $carrito = $_SESSION['Carrito'];
-                $productos = $carrito->getIdProductos();
                 foreach ($productos as $idProducto) {
+                    $producto = $controladorProducto->getProductById($idProducto);
                     echo "<div class='producto'>
                 
-                    <p>Nombre = " . $controladorProducto->getProductById($productos)->getNombre() . "
+                    <p>Nombre = " . $producto->getNombre() . "
                     <!--Imagen-->
                     
                     <form action='../Controlador/ControladorPeticionesCarrito.php' method='post'>

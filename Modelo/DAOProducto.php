@@ -49,6 +49,24 @@ class DAOProducto
         }
     }
 
+    public function getProductByName($nombre)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM producto WHERE nombre = :nombre");
+            $stmt->execute([':nombre' => $nombre]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                return $producto;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function addProduct(DTOProducto $producto)
     {
         try {

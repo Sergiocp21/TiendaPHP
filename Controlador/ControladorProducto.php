@@ -23,6 +23,11 @@ class ControladorProducto
         return $this->daoProducto->getProductById($id);
     }
 
+    public function getProductByName($nombre)
+    {
+        return $this->daoProducto->getProductByName($nombre);
+    }
+
     //Añade un producto
     public function addProduct($nombre, $descripcion, $precio, $clienteId)
     {

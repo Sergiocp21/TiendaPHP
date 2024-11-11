@@ -19,5 +19,10 @@ class ControladorCarrito
         $_SESSION['Carrito']->eliminarProducto($id_Producto);
     }
 
+    public function getProductos()
+    {
+        $_SESSION['Carrito']->getIdProductos();
+    }
+
 
 }

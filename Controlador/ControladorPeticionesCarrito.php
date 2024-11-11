@@ -1,25 +1,26 @@
 <?php
+require_once "ControladorCarrito.php";
 
 session_start();
 
-require_once "ControladorCarrito.php";
+$ControladorCarrito = new ControladorCarrito();
+
 
 if (isset($_POST["Carrito"])) {
-    if ($_POST["accion"] == "eliminar") {
-        $indice = $_POST["indice"];
-        removeProducto($indice);
-        echo "Producto eliminado del carrito";
-        header("Location: ..//VistaCarrito.php");
+    if ($_POST["accion"] == "Eliminar del carrito") {
+        $idProducto = $_POST["id_producto"];
+        $ControladorCarrito->removeProducto($idProducto);
+        header("Location: ..//Vista/vistaCarrito.php");
     } else if ($_POST["accion"] == "agregar") {
 
         $idProducto = $_POST["idProducto"];
-        $idCliente = $_POST["idCliente"];
+        $ControladorCarrito->addProducto($idProducto);
+        //header("Location: ..//Vista/vistaCarrito.php");
     }
 }
 
 if ($_POST["accion"] == "Vaciar carrito") {
-    if (isset($_SESSION['Carrito'])) {
-        unset($_SESSION['Carrito']);
-    }
-    header("Location: ../Vista/vistaCarrito.php");
+    unset($_SESSION["Carrito"]);
+    echo "Se han eliminado todos los productos del carrito";
+    header("Location: ..//Vista/vistaCarrito.php");
 }

@@ -1,0 +1,36 @@
+<?php
+
+class Carrito
+{
+
+    private $id;
+    private $id_cliente;
+    private $id_productos;
+
+    public function __construct($id_cliente, $id_producto)
+    {
+        $this->id_cliente = $id_cliente;
+        array_push($this->id_productos, $id_producto);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getIdCliente()
+    {
+        return $this->id_cliente;
+    }
+
+    public function getIdProductos()
+    {
+        return $this->id_productos;
+    }
+
+}

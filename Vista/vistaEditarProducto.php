@@ -35,17 +35,17 @@
     <?php //En la url vendrá el ID del producto a editar 
     if (isset($_GET['idProduct'])) {
         if ($controladorProducto->getProductById($_GET['idProduct']) != null) { //EL producto existe
-            $producto = $controladorProducto->getProductById($_GET['idProduct']);
+            $productos = $controladorProducto->getProductById($_GET['idProduct']);
 
             echo "
          <form action='../Controlador/ControladorAnadirEditarYEliminarProducto.php' method='post'>
             <input type='hidden' name='idProduct' value='" . $_GET['idProduct'] . "'>
             <label for='nombre'>Nombre:</label>
-            <input type='text' id='nombre' name='nombre' value='" . $producto->getNombre() . "' required><br><br>
+            <input type='text' id='nombre' name='nombre' value='" . $productos->getNombre() . "' required><br><br>
             <label for='descripcion'>Descripción:</label>
-            <input type='text' id='descripcion' name='descripcion' value='" . $producto->getDescripcion() . "' required><br><br>
+            <input type='text' id='descripcion' name='descripcion' value='" . $productos->getDescripcion() . "' required><br><br>
             <label for='precio'>Precio:</label>
-            <input type='number' id='precio' name='precio' value='" . $producto->getPrecio() . "' required><br><br>
+            <input type='number' id='precio' name='precio' value='" . $productos->getPrecio() . "' required><br><br>
             <input type='submit' value='Editar Producto' name='gestionProductos'>
         </form>";
 

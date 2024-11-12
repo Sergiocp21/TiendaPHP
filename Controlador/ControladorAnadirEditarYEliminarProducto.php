@@ -55,7 +55,7 @@ switch ($accion) {
             }
         }
         if ($errores != "") {
-            header("Location: ../Vista/VistaEditarProducto.php?". "error=" . $errores);
+            header("Location: ../Vista/VistaEditarProducto.php?" . "error=" . $errores);
         }
 
         break;
@@ -82,6 +82,15 @@ switch ($accion) {
 
         if ($errores != "") {
             header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&error=" . $errores);
+        }
+        break;
+
+    case "Eliminar Producto":
+        if (isset($_REQUEST['idProduct'])) {
+            $controladorProducto->deleteProduct($_REQUEST['idProduct']);
+            header("Location: ../Vista/vistaProductos.php?exito=Producto eliminado correctamente");
+        } else {
+            header("Location: ../Vista/vistaProductos.php?error=Error al eliminar el producto");
         }
         break;
 }

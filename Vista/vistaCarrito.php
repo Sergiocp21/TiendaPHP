@@ -24,7 +24,7 @@
 
     <nav class="navbar">
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.php">Inicio</a></li>
             <li><a href="AnadirProducto.php">Añadir Producto</a></li>
             <li><a href="FormularioModificar.php">Modificar Producto</a></li>
             <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
@@ -39,7 +39,6 @@
         if (isset($_SESSION['Carrito'])) {
             $productos = $controladorCarrito->getIdProducts();
             if (count($productos) > 0) {
-                $carrito = $_SESSION['Carrito'];
                 foreach ($productos as $idProducto) {
                     $producto = $controladorProducto->getProductById($idProducto);
                     echo "<div class='producto'>

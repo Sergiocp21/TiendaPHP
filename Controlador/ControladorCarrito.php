@@ -1,28 +1,33 @@
 <?php
+require_once "../Modelo/DTOProducto.php";
+require_once "../Modelo/Carrito.php";
 session_start();
 class ControladorCarrito
 {
+    private $carrito;
+    public function __construct()
+    {
+        if (!isset($_SESSION['Carrito']) || !is_object($_SESSION['Carrito'])) {
+            $_SESSION['Carrito'] = new Carrito($_SESSION['cliente']);
+
+        }
+        $this->carrito = $_SESSION['Carrito'];
+    }
 
     public function getIdProducts()
     {
-        return $_SESSION['Carrito']->getIdProductos();
+        return $this->carrito->getIdProductos();
     }
 
-    public function addProducto($id_Producto)
+    public function addProduct($id_Producto)
     {
 
-        $_SESSION['Carrito']->anadirProducto($id_Producto);
+        $this->carrito->anadirProducto($id_Producto);
 
     }
-    public function removeProducto($id_Producto)
+    public function deleteProduct($id_Producto)
     {
-        $_SESSION['Carrito']->eliminarProducto($id_Producto);
+        $this->carrito->eliminarProducto($id_Producto);
     }
-
-    public function getProductos()
-    {
-        $_SESSION['Carrito']->getIdProductos();
-    }
-
 
 }

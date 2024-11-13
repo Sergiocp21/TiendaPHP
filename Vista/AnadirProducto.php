@@ -31,7 +31,7 @@
 </nav>
 
 <h2>Añadir Producto</h2>
-<form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post">
+<form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post" enctype="multipart/form-data">
 
     <label for="nombre" >Nombre</label>
     <input type="text" name="nombre" required>
@@ -41,8 +41,10 @@
 
     <label for="precio">Precio en €</label>
     <input type="text" name="precio" required>
+    <br>
+    <br>
 
-    <? //<input type="file" id="file-input" accept=".png"> <br><br>?>
+    <input type="file" name="Selector de imagenes" accept=".png"> <br><br><br><br>
 
     <input type="submit" value="Añadir Producto" name="gestionProductos">
     <?php

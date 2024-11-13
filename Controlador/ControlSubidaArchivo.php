@@ -9,15 +9,15 @@ class ControlSubidaArchivo
     public function __construct()
     {
         $this->directorio = "../Recursos/Subidas/";
-        $this->rutaCompleta = $this->directorio . basename($_FILES["ficheroSubida"]["name"]);
+        $this->rutaCompleta = $this->directorio . basename($_FILES["imagen"]["name"]);
     }
     public function mostrarDatosFichero()
     {
-        print "Nombre de fichero: " . $_FILES['ficheroSubida']['name'] . "<br>";
-        print "Tipo : " . $_FILES['ficheroSubida']['type'] . "<br>";
-        print "Tamaño : " . $_FILES['ficheroSubida']['size'] . "<br>";
-        print "Nombre temporal: " . $_FILES['ficheroSubida']['tmp_name'] . "<br>";
-        print "Error : " . $_FILES['ficheroSubida']['error'] . "<br>";
+        print "Nombre de fichero: " . $_FILES['imagen']['name'] . "<br>";
+        print "Tipo : " . $_FILES['imagen']['type'] . "<br>";
+        print "Tamaño : " . $_FILES['imagen']['size'] . "<br>";
+        print "Nombre temporal: " . $_FILES['imagen']['tmp_name'] . "<br>";
+        print "Error : " . $_FILES['imagen']['error'] . "<br>";
         print "Ruta completa: " . $this->rutaCompleta . "<br>";
     }
 
@@ -32,7 +32,7 @@ class ControlSubidaArchivo
     }
     public function comprobarImagen()
     {
-        $check = getimagesize($_FILES["ficheroSubida"]["tmp_name"]);
+        $check = getimagesize($_FILES["imagen"]["tmp_name"]);
         if ($check !== false) {
             print "File is an image - " . $check["mime"] . ".";
             $this->tipoImagen();
@@ -58,8 +58,8 @@ class ControlSubidaArchivo
 
     public function moverImagen()
     {
-        if (move_uploaded_file($_FILES["ficheroSubida"]["tmp_name"], $this->rutaCompleta)) {
-            print "The file " . htmlspecialchars(basename($_FILES["ficheroSubida"]["name"])) . " has been uploaded.";
+        if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $this->rutaCompleta)) {
+            print "The file " . htmlspecialchars(basename($_FILES["imagen"]["name"])) . " has been uploaded.";
             return true;
         } else {
             print "Sorry, there was an error uploading your file.";

@@ -61,11 +61,11 @@ switch ($accion) {
         break;
 
     case "Editar Producto":
-        if (isset($_REQUEST['idProduct']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio'])) {
+        if (isset($_REQUEST['idProducto']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio'])) {
             if (comprobar("nombre")) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
-                        $controladorProducto->updateProduct($_REQUEST['idProduct'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
+                        $controladorProducto->updateProduct($_REQUEST['idProducto'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
                         header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&exito=Producto editado correctamente");
                     } else {
                         $errores .= "El precio debe se un número positivo";
@@ -81,13 +81,13 @@ switch ($accion) {
         }
 
         if ($errores != "") {
-            header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&error=" . $errores);
+            header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProducto'] . "&error=" . $errores);
         }
         break;
 
     case "Eliminar Producto":
-        if (isset($_REQUEST['idProduct'])) {
-            $controladorProducto->deleteProduct($_REQUEST['idProduct']);
+        if (isset($_REQUEST['idProducto'])) {
+            $controladorProducto->deleteProduct($_REQUEST['idProducto']);
             header("Location: ../Vista/vistaProductos.php?exito=Producto eliminado correctamente");
         } else {
             header("Location: ../Vista/vistaProductos.php?error=Error al eliminar el producto");

@@ -33,13 +33,13 @@
         <?php
 
         $controladorProducto = new ControladorProducto();
-        $producto = $controladorProducto->getAllProducts();
+        $productos = $controladorProducto->getAllProducts();
 
-        foreach ($producto as $producto) {
+        foreach ($productos as $producto) {
             echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
             echo "<div class='producto'>";
 
-            echo "<img src='" /* $producto->getImagen() */ . "' alt='" . $producto->getNombre() . "'>";
+            echo "<img src='" . $producto->getImagen() . "' alt='" . $producto->getNombre() . "'>";
             echo "<p>" . $producto->getNombre() . "</p>";
             if ($producto->getPrecio() <= 10) {
                 echo "<span>¡Producto de oferta!</span>";

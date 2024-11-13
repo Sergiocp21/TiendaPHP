@@ -38,8 +38,8 @@
             $producto = $controladorProducto->getProductById($_GET['idProduct']);
 
             echo "
-         <form action='../Controlador/ControladorAnadirEditarYEliminarProducto.php' method='post'>
-            <input type='hidden' name='idProduct' value='" . $_GET['idProduct'] . "'>
+         <form action='../Controlador/ControladorAnadirEditarYEliminarProducto.php' method='post' enctype='multipart/form-data'>
+            <input type='hidden' name='idProducto' value='" . $_GET['idProducto'] . "'>
             <label for='nombre'>Nombre:</label>
             <input type='text' id='nombre' name='nombre' value='" . $producto->getNombre() . "' required><br><br>
             <label for='descripcion'>Descripción:</label>

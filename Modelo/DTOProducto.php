@@ -10,14 +10,14 @@ class DTOProducto
     private $clienteId;
     private $imagen;
 
-    public function __construct($id, $nombre, $descripcion, $precio, $clienteId)
+    public function __construct($id, $nombre, $descripcion, $precio, $clienteId, $imagen)
     {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->precio = $precio;
         $this->clienteId = $clienteId;
-        $this->imagen = null;
+        $this->imagen = $imagen;
     }
 
     public function getId()

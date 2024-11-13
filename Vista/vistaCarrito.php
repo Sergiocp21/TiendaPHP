@@ -43,8 +43,9 @@
                     $producto = $controladorProducto->getProductById($idProducto);
                     echo "<div class='producto'>
                 
-                    <p>Nombre = " . $producto->getNombre() . "
-                    <!--Imagen-->
+                    <img src='" . $producto->getImagen() . "' alt='Imagen del producto'>
+                    <p>" . $producto->getNombre() . "
+                    
                     
                     <form action='../Controlador/ControladorPeticionesCarrito.php' method='post'>
                     

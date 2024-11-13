@@ -21,7 +21,7 @@ class DAOProducto
             $productos = array();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 $productos[] = $producto;
             }
             return $productos;
@@ -39,7 +39,7 @@ class DAOProducto
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 return $producto;
             } else {
                 return null;
@@ -57,7 +57,7 @@ class DAOProducto
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 return $producto;
             } else {
                 return null;

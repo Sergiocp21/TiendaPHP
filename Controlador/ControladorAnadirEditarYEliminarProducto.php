@@ -56,18 +56,18 @@ switch ($accion) {
             }
         }
         if ($errores != "") {
-            header("Location: ../Vista/VistaEditarProducto.php?" . "error=" . $errores);
+            header("Location: ../Vista/AnadirProducto.php?" . "error=" . $errores);
         }
 
         break;
 
     case "Editar Producto":
-        if (isset($_REQUEST['idProducto']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio'])) {
+        if (isset($_REQUEST['idProducto']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
             if (comprobar("nombre")) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
                         $controladorProducto->updateProduct($_REQUEST['idProducto'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
-                        header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&exito=Producto editado correctamente");
+                        header("Location: ../Vista/VistaEditarProducto.php?idProducto=" . $_REQUEST['idProducto'] . "&exito=Producto editado correctamente");
                     } else {
                         $errores .= "El precio debe se un número positivo";
                     }
@@ -75,14 +75,14 @@ switch ($accion) {
                     $errores .= "Rellena la descripción";
                 }
             } else {
-                $errores .= "El nombre no puede estar vacío";
+                $errores .= "El nombre del producto no es valido o ya hay un nombre igual en la base de datos";
             }
         } else {
             $errores .= "Error al editar el producto";
         }
 
         if ($errores != "") {
-            header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProducto'] . "&error=" . $errores);
+            header("Location: ../Vista/VistaEditarProducto.php?idProducto=" . $_REQUEST['idProducto'] . "&error=" . $errores);
         }
         break;
 

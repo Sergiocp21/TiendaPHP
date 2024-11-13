@@ -42,7 +42,7 @@
                 foreach ($producto as $idProducto) {
                     $producto = $controladorProducto->getProductById($idProducto);
                     echo "<div class='producto'>
-                
+                    
                     <img src='" . $producto->getImagen() . "' alt='Imagen del producto'>
                     <p>" . $producto->getNombre() . "
                     

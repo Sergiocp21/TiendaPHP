@@ -35,7 +35,7 @@ class ControladorProducto
     public function addProduct($nombre, $descripcion, $precio, $clienteId)
     {
         $ruta = $this->controlSubidaArchivo->proceso();
-        $producto = new DTOProducto(null, $nombre, $descripcion, $precio, $clienteId);
+        $producto = new DTOProducto(null, $nombre, $descripcion, $precio, $clienteId, null);
         $producto->setImagen($ruta);
         return $this->daoProducto->addProduct($producto);
     }
@@ -44,7 +44,7 @@ class ControladorProducto
     public function updateProduct($id, $nombre, $descripcion, $precio, $clienteId)
     {
         $ruta = $this->controlSubidaArchivo->proceso();
-        $producto = new DTOProducto(null, $nombre, $descripcion, $precio, $clienteId);
+        $producto = new DTOProducto(null, $nombre, $descripcion, $precio, $clienteId, null);
         $producto->setImagen($ruta);
 
         return $this->daoProducto->updateProduct($producto);

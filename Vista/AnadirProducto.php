@@ -33,7 +33,8 @@
     </nav>
 
     <h2>Añadir Producto</h2>
-    <form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post">
+    <form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post"
+        enctype="multipart/form-data">
 
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" required>

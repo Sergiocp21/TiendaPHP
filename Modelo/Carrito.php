@@ -40,7 +40,18 @@ class Carrito
 
     public function eliminarProducto($id_producto)
     {
-        unset($this->id_productos[$id_producto]);
+        // Busca el índice del producto en el array (si existe)
+        $index = array_search($id_producto, $this->id_productos);
+
+        // Si el índice existe, elimina el producto
+        if ($index !== false) {
+            unset($this->id_productos[$index]);
+            // Reindexa el array para mantener los índices consecutivos
+            $this->id_productos = array_values($this->id_productos);
+            return true;
+        }
+        return false; // Opcional: retorna false si no encuentra el producto
     }
+
 
 }

@@ -37,9 +37,9 @@
     <section class="productos">
         <?php
         if (isset($_SESSION['Carrito'])) {
-            $productos = $controladorCarrito->getIdProducts();
-            if (count($productos) > 0) {
-                foreach ($productos as $idProducto) {
+            $producto = $controladorCarrito->getIdProducts();
+            if (count($producto) > 0) {
+                foreach ($producto as $idProducto) {
                     $producto = $controladorProducto->getProductById($idProducto);
                     echo "<div class='producto'>
                 

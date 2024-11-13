@@ -33,9 +33,9 @@
         <?php
 
         $controladorProducto = new ControladorProducto();
-        $productos = $controladorProducto->getAllProducts();
+        $producto = $controladorProducto->getAllProducts();
 
-        foreach ($productos as $producto) {
+        foreach ($producto as $producto) {
             echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
             echo "<div class='producto'>";
 

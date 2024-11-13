@@ -8,6 +8,7 @@ class DTOProducto
     private $descripcion;
     private $precio;
     private $clienteId;
+    private $imagen;
 
     public function __construct($id, $nombre, $descripcion, $precio, $clienteId)
     {
@@ -16,6 +17,7 @@ class DTOProducto
         $this->descripcion = $descripcion;
         $this->precio = $precio;
         $this->clienteId = $clienteId;
+        $this->imagen = null;
     }
 
     public function getId()
@@ -62,5 +64,15 @@ class DTOProducto
     public function setClienteId($clienteId)
     {
         $this->clienteId = $clienteId;
+    }
+
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once './ControladorProducto.php';
+require_once './ControladorSubidaArchivo.php';
 session_start();
 $controladorProducto = new ControladorProducto();
 $accion = $_REQUEST['gestionProductos'];
@@ -8,9 +9,10 @@ $accion = $_REQUEST['gestionProductos'];
 function comprobar($campo)
 {
     $controladorProducto = new ControladorProducto();
+    $controlSubidaArchivo = new ControlSubidaArchivo();
     switch ($campo) {
         case "nombre":
-            if ($_REQUEST['nombre'] == "" || $controladorProducto->getProductbyname($_REQUEST['nombre']) != null) {
+            if ($_REQUEST['nombre'] == "" || $controladorProducto->getProductByName($_REQUEST['nombre']) != null) {
 
                 return false;
             } else {
@@ -37,7 +39,7 @@ $errores = "";
 switch ($accion) {
     case "Añadir Producto":
         //comprueba que estan todos los datos introducidos
-        if (isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio'])) {
+        if (isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
             //hacemos las validaciones correspondientes y si no se cumplen te vuelve a la pantalla de añadir
             if (comprobar("nombre")) {
                 if (comprobar("descripcion")) {

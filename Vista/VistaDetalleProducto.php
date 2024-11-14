@@ -33,15 +33,16 @@ if (!isset($_SESSION['cliente'])) {
     <header class="header">
         <h1>TIENDA ONLINE</h1>
     </header>
-
     <nav class="navbar">
         <ul>
             <li><a href="index.php">Inicio</a></li>
-            <li><a href="AnadirProducto.php">Añadir Producto</a></li>
-            <li><a href="vistaEditarProducto.php">Modificar Producto</a></li>
-            <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
             <li><a href="vistaCarrito.php">Carrito</a></li>
             <li><a href="InfoCliente.php">Cliente</a></li>
+            <li><a href="vistaProductos.php">Productos</a>
+                <ul class="submenu">
+                    <li><a href="AnadirProducto.php">Añadir Producto</a> </li>
+                </ul>
+            </li>
         </ul>
     </nav>
     <div>
@@ -49,25 +50,7 @@ if (!isset($_SESSION['cliente'])) {
         echo "Bienvenido, " . $_SESSION['cliente']->getNombre();
         ?>
     </div>
-=======
-<nav class="navbar">
-    <ul>
-        <li><a href="index.php">Inicio</a></li>
-        <li><a href="vistaCarrito.php">Carrito</a></li>
-        <li><a href="InfoCliente.php">Cliente</a></li>
-        <li><a href="vistaProductos.php">Productos</a>
-            <ul class="submenu">
-                <li><a href="AnadirProducto.php">Añadir Producto</a> </li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-<div>
-    <?php
-    echo "Bienvenido, " . $_SESSION['cliente']->getNombre();
-    ?>
-</div>
->>>>>>> cca0ab6d5d5164fb958919499a2110176718571d
+    >>>>>>> cca0ab6d5d5164fb958919499a2110176718571d
 
     <h1>Nombre: <?php echo htmlspecialchars($producto->getNombre()); ?></h1>
     <h3>Descripcion: <?php echo htmlspecialchars($producto->getDescripcion()); ?></h3>

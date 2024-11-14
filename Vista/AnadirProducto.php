@@ -20,13 +20,13 @@
 <nav class="navbar">
     <ul>
         <li><a href="index.php">Inicio</a></li>
-        <li><a href="AnadirProducto.php">Añadir Producto</a></li>
-        <li><a href="vistaEditarProducto.php">Modificar Producto</a></li>
-        <li><a href="FormularioEliminar.php">Eliminar Producto</a></li>
         <li><a href="vistaCarrito.php">Carrito</a></li>
-        <li><a href="InfoCliente.php">Cliente</a> </li>
-    </ul>
-    </li>
+        <li><a href="InfoCliente.php">Cliente</a></li>
+        <li><a href="vistaProductos.php">Productos</a>
+            <ul class="submenu">
+                <li><a href="AnadirProducto.php">Añadir Producto</a> </li>
+            </ul>
+        </li>
     </ul>
 </nav>
 

@@ -3,7 +3,9 @@ require_once '../Modelo/DAOProducto.php';
 require_once '../Modelo/Carrito.php';
 require_once "../Modelo/DTOCliente.php";
 require_once '../Controlador/ControladorCliente.php';
+require_once "../Controlador/ControladorCarrito.php";
 $daoProducto = new DAOProducto();
+$producto = $daoProducto->getProductById($_REQUEST["idProducto"]);
 
 
 session_start();
@@ -44,37 +46,45 @@ if (!isset($_SESSION['cliente'])) {
             </li>
         </ul>
     </nav>
-
     <div>
         <?php
         echo "Bienvenido, " . $_SESSION['cliente']->getNombre();
         ?>
     </div>
 
-    <h2 align="CENTER">SUPERMERCADO</h2>
-    <section class="productos">
-        <?php
-        $productos = $daoProducto->getAllProducts();
-        for ($i = 0; $i < 4; $i++) {
-            $producto = $productos[$i];
-            echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
-            echo "<div class='producto'>";
+    <h1><?php echo htmlspecialchars($producto->getNombre()); ?></h1>
+    <h3> <?php echo htmlspecialchars($producto->getDescripcion()); ?></h3>
+    <h3><?php echo htmlspecialchars($producto->getPrecio()); ?>€</h3>
+    <img src="<?php echo htmlspecialchars($producto->getImagen()); ?>"
+        alt="<?php echo htmlspecialchars($producto->getNombre()); ?>">
+    <br><br>
 
-            echo "<img src='" . $producto->getImagen() . "' alt='" . $producto->getNombre() . "'>";
-            echo "<p>" . $producto->getNombre() . "</p>";
-            echo "<p>Precio: " . $producto->getPrecio() . "€</p>";
-            if ($producto->getPrecio() <= 10) {
-                echo "<span>¡Producto de oferta!</span>";
-            } else if ($producto->getPrecio() > 200) {
-                echo "<span>¡Producto de calidad!</span>";
-            }
 
-            echo "</div>";
-            echo "</a>";
 
-        }
-        ?>
-    </section>
+
+    <form action="../Controlador/ControladorPeticionesCarrito.php" method="post">
+        <input type="hidden" name="idProducto" value="<?php echo htmlspecialchars($producto->getId()); ?>">
+
+
+        <input type="submit" value="Comprar" name="accion">
+
+    </form>
+
+    <form action="../Controlador/ControladorAnadirEditarYEliminarProducto.php" method="post">
+        <input type="hidden" name="idProducto" value="<?php echo htmlspecialchars($producto->getId()); ?>">
+
+        <input type="submit" value="Editar Producto" name="gestionProductos">
+
+        <input type="submit" value="Eliminar Producto" name="gestionProductos">
+
+    </form>
+
+    <?php
+    if (isset($_GET['exito'])) {
+        echo "<p style='color: green'>" . $_GET['exito'] . "</p>";
+    }
+    ?>
+
 
     <footer class="footer">
         <p> Tienda Online - Sergio Carvajal y Oscar Lara</p>

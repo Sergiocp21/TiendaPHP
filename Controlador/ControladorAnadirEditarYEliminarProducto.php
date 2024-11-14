@@ -10,9 +10,21 @@ function comprobar($campo)
 {
     $controladorProducto = new ControladorProducto();
     switch ($campo) {
-        case "nombre":
+        case "nombreAñadir":
             if ($_REQUEST['nombre'] == "" || $controladorProducto->getProductByName($_REQUEST['nombre']) != null) {
 
+                return false;
+            } else {
+                return true;
+            }
+
+        case "nombreEditar":
+            $nombre = $_REQUEST['nombre'];
+            $idProducto = $_REQUEST['idProducto'];
+            $productoExistente = $controladorProducto->getProductByName($nombre);
+
+            // Si el nombre está vacío o el nombre ya existe para otro producto, devuelve false
+            if ($nombre == "" || ($productoExistente != null && $productoExistente->getId() != $idProducto)) {
                 return false;
             } else {
                 return true;
@@ -40,7 +52,7 @@ switch ($accion) {
         //comprueba que estan todos los datos introducidos
         if (isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
             //hacemos las validaciones correspondientes y si no se cumplen te vuelve a la pantalla de añadir
-            if (comprobar("nombre")) {
+            if (comprobar("nombreAñadir")) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
                         $controladorProducto->addProduct($_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
@@ -63,7 +75,7 @@ switch ($accion) {
 
     case "Editar Producto":
         if (isset($_REQUEST['idProducto']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
-            if (comprobar("nombre")) {
+            if (comprobar("nombreEditar")) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
                         $controladorProducto->updateProduct($_REQUEST['idProducto'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);

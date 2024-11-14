@@ -47,7 +47,7 @@ class ControlSubidaArchivo
         // Allow certain file formats
         if (
             $this->imageFileType != "jpg" && $this->imageFileType != "png" && $this->imageFileType != "jpeg"
-            && $this->imageFileType != "gif"
+            && $this->imageFileType != "gif" && $this->imageFileType != "webp"
         ) {
             return true;
         } else {

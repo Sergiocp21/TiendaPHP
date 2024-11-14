@@ -48,7 +48,7 @@
             <label for='precio'>Precio:</label>
             <input type='number' id='precio' name='precio' value='" . $producto->getPrecio() . "' required><br><br>
             <label>Imagen:</label>
-            <input type='file' id='imagen' name='imagen' value='" . $producto->getImagen() . "'><br><br>
+            <input type='file' id='imagen' name='imagen' required><br><br>
             <input type='submit' value='Editar Producto' name='gestionProductos'>
         </form>";
 

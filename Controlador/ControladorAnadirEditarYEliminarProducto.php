@@ -48,15 +48,15 @@ function comprobar($campo)
 $errores = "";
 
 switch ($accion) {
-    case "Añadir Producto":
+    case "Anadir Producto":
         //comprueba que estan todos los datos introducidos
         if (isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
-            //hacemos las validaciones correspondientes y si no se cumplen te vuelve a la pantalla de añadir
+            //hacemos las validaciones correspondientes y si no se cumplen te vuelve a la pantalla de anadir
             if (comprobar("nombreAñadir")) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
                         $controladorProducto->addProduct($_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
-                        header("Location: ../Vista/AnadirProducto.php?exito= Producto añadido correctamente");
+                        header("Location: ../Vista/AnadirProducto.php?exito= Producto anadido correctamente");
                     } else {
                         $errores .= "El precio del producto no es valido ";
                     }

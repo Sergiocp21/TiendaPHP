@@ -24,7 +24,7 @@
             <li><a href="InfoCliente.php">Cliente</a></li>
             <li><a href="vistaProductos.php">Productos</a>
                 <ul class="submenu">
-                    <li><a href="AnadirProducto.php">Añadir Producto</a> </li>
+                    <li><a href="AnadirProducto.php">Anadir Producto</a> </li>
                 </ul>
             </li>
         </ul>

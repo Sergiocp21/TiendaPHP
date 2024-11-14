@@ -28,7 +28,7 @@
         <label for="nickname">Nickname</label>
         <input type="text" name="nickname">
 
-        <label for="password">Contraseña</label>
+        <label for="password">Contrasena</label>
         <input type="password" name="password">
 
         <label for="telefono">Telefono</label>

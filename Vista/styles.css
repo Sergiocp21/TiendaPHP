@@ -134,14 +134,12 @@ body {
 
 
 
-.footer {
+footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 15px 0;
-    position: fixed;
+    padding: 20px 0;
     width: 100%;
-    bottom: 0;
 }
 
 

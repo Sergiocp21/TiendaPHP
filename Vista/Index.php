@@ -28,44 +28,45 @@ if (!isset($_SESSION['cliente'])) {
 
 <body>
 
-<header class="header">
-    <h1>TIENDA ONLINE</h1>
-</header>
+    <header class="header">
+        <h1>TIENDA ONLINE</h1>
+    </header>
 
-<nav class="navbar">
-    <ul>
-        <li><a href="index.php">Inicio</a></li>
-        <li><a href="vistaCarrito.php">Carrito</a></li>
-        <li><a href="InfoCliente.php">Cliente</a></li>
-        <li><a href="vistaProductos.php">Productos</a>
-        <ul class="submenu">
-        <li><a href="AnadirProducto.php">Añadir Producto</a> </li>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="vistaCarrito.php">Carrito</a></li>
+            <li><a href="InfoCliente.php">Cliente</a></li>
+            <li><a href="vistaProductos.php">Productos</a>
+                <ul class="submenu">
+                    <li><a href="AnadirProducto.php">Añadir Producto</a> </li>
+                </ul>
+            </li>
         </ul>
-        </li>
-    </ul>
-</nav>
+    </nav>
 
-<div>
-    <?php
-    echo "Bienvenido, " . $_SESSION['cliente']->getNombre();
-    ?>
-</div>
+    <div>
+        <?php
+        echo "Bienvenido, " . $_SESSION['cliente']->getNombre();
+        ?>
+    </div>
 
-<h2 align="CENTER">SUPERMERCADO</h2>
-<section class="productos">
-    <?php
-    $productos = $daoProducto->getAllProducts();
-    for ($i = 0; $i < 4; $i++) {
-        $producto = $productos[$i];
-        echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
-        echo "<div class='producto'>";
+    <h2 align="CENTER">SUPERMERCADO</h2>
+    <section class="productos">
+        <?php
+        $productos = $daoProducto->getAllProducts();
+        for ($i = 0; $i < 4; $i++) {
+            $producto = $productos[$i];
+            echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
+            echo "<div class='producto'>";
 
-        echo "<img src='" /* $producto->getImagen() */ . "' alt='" . $producto->getNombre() . "'>";
-        echo "<p>" . $producto->getNombre() . "</p>";
-        if ($producto->getPrecio() <= 10) {
-            echo "<span>¡Producto de oferta!</span>";
-        } else if ($producto->getPrecio() > 200) {
-            echo "<span>¡Producto de calidad!</span>";
+            echo "<img src='" /* $producto->getImagen() */ . "' alt='" . $producto->getNombre() . "'>";
+            echo "<p>" . $producto->getNombre() . "</p>";
+            if ($producto->getPrecio() <= 10) {
+                echo "<span>¡Producto de oferta!</span>";
+            } else if ($producto->getPrecio() > 200) {
+                echo "<span>¡Producto de calidad!</span>";
+            }
         }
         ?>
     </section>

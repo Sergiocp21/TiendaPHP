@@ -43,8 +43,10 @@
             if (count($producto) > 0) {
                 foreach ($producto as $idProducto) {
                     $producto = $controladorProducto->getProductById($idProducto);
-                    echo "<div class='producto'>
-                    
+
+                    echo "
+                    <div class='producto'>
+                    <a href='../Vista/VistaDetalleProducto.php?idProducto=" . $idProducto . "'>
                     <img src='" . $producto->getImagen() . "' alt='Imagen del producto'>
                     <p>" . $producto->getNombre() . "
                     
@@ -55,8 +57,9 @@
                     
                     <input type='submit' name='accion' value='Eliminar del carrito'>
                     </form>
-                    
+                    </a>
                     </div>
+                    
                     ";
                 }
             } else {

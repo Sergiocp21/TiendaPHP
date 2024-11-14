@@ -33,11 +33,12 @@
     </nav>
     <h1>Editar Producto</h1>
     <?php //En la url vendrá el ID del producto a editar 
-    if (isset($_GET['idProduct'])) {
-        if ($controladorProducto->getProductById($_GET['idProduct']) != null) { //EL producto existe
-            $producto = $controladorProducto->getProductById($_GET['idProduct']);
+    if (isset($_GET['idProducto'])) {
+        if ($controladorProducto->getProductById($_GET['idProducto']) != null) { //EL producto existe
+            $producto = $controladorProducto->getProductById($_GET['idProducto']);
 
             echo "
+            <img src='" . $producto->getImagen() . "' alt= '" . $producto->getNombre() . "'>
          <form action='../Controlador/ControladorAnadirEditarYEliminarProducto.php' method='post' enctype='multipart/form-data'>
             <input type='hidden' name='idProducto' value='" . $_GET['idProducto'] . "'>
             <label for='nombre'>Nombre:</label>
@@ -46,8 +47,8 @@
             <input type='text' id='descripcion' name='descripcion' value='" . $producto->getDescripcion() . "' required><br><br>
             <label for='precio'>Precio:</label>
             <input type='number' id='precio' name='precio' value='" . $producto->getPrecio() . "' required><br><br>
-            <label for='imagen'>Imagen: <img src='" . $producto->getImagen() . "'</label>
-            <input type='file' id='imagen' name='imagen' value='" . $producto->getImagen() . "' required><br><br>
+            <label>Imagen:</label>
+            <input type='file' id='imagen' name='imagen' value='" . $producto->getImagen() . "'><br><br>
             <input type='submit' value='Editar Producto' name='gestionProductos'>
         </form>";
 

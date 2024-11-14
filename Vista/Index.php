@@ -18,12 +18,14 @@ if (!isset($_SESSION['cliente'])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Online</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
 <header class="header">
@@ -65,13 +67,12 @@ if (!isset($_SESSION['cliente'])) {
         } else if ($producto->getPrecio() > 200) {
             echo "<span>¡Producto de calidad!</span>";
         }
-        echo "<span> Precio: " . $producto->getPrecio() . "€</span>";
+        ?>
+    </section>
 
-        echo "</div>";
-        echo "</a>";
-    }
-    ?>
-</section>
+    <footer class="footer">
+        <p> Tienda Online - Sergio Carvajal y Oscar Lara</p>
+    </footer>
+</body>
 
-<footer class="footer">
-    <p> Tienda Online - Sergio Car
+</html>

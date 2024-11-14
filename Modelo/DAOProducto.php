@@ -21,7 +21,7 @@ class DAOProducto
             $productos = array();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 $productos[] = $producto;
             }
             return $productos;
@@ -39,7 +39,7 @@ class DAOProducto
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 return $producto;
             } else {
                 return null;
@@ -57,7 +57,7 @@ class DAOProducto
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 return $producto;
             } else {
                 return null;
@@ -70,12 +70,13 @@ class DAOProducto
     public function addProduct(DTOProducto $producto)
     {
         try {
-            $stmt = $this->db->prepare("INSERT INTO producto (nombre, descripcion, precio, cliente_id) VALUES (:nombre, :descripcion, :precio, :cliente_id)");
+            $stmt = $this->db->prepare("INSERT INTO producto (nombre, descripcion, precio, cliente_id, imagen) VALUES (:nombre, :descripcion, :precio, :cliente_id, :imagen)");
             $stmt->execute([
                 ':nombre' => $producto->getNombre(),
                 ':descripcion' => $producto->getDescripcion(),
                 ':precio' => $producto->getPrecio(),
                 ':cliente_id' => $producto->getClienteId(),
+                ':imagen' => $producto->getImagen()
             ]);
             return $this->db->lastInsertId();
         } catch (PDOException $e) {
@@ -87,13 +88,14 @@ class DAOProducto
     public function updateProduct(DTOProducto $producto)
     {
         try {
-            $stmt = $this->db->prepare("UPDATE producto SET nombre = :nombre, descripcion = :descripcion, precio = :precio, cliente_id = :cliente_id WHERE id = :id");
+            $stmt = $this->db->prepare("UPDATE producto SET nombre = :nombre, descripcion = :descripcion, precio = :precio, cliente_id = :cliente_id, imagen = :imagen WHERE id = :id");
             $stmt->execute([
                 ':nombre' => $producto->getNombre(),
                 ':descripcion' => $producto->getDescripcion(),
                 ':precio' => $producto->getPrecio(),
                 ':cliente_id' => $producto->getClienteId(),
                 ':id' => $producto->getId(),
+                ':imagen' => $producto->getImagen()
             ]);
             return true;
 

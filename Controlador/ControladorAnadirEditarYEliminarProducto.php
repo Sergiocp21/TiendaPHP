@@ -1,5 +1,6 @@
 <?php
 require_once './ControladorProducto.php';
+require_once '../Controlador/ControlSubidaArchivo.php';
 session_start();
 $controladorProducto = new ControladorProducto();
 $accion = $_REQUEST['gestionProductos'];
@@ -10,7 +11,7 @@ function comprobar($campo)
     $controladorProducto = new ControladorProducto();
     switch ($campo) {
         case "nombre":
-            if ($_REQUEST['nombre'] == "" || $controladorProducto->getProductbyname($_REQUEST['nombre']) != null) {
+            if ($_REQUEST['nombre'] == "" || $controladorProducto->getProductByName($_REQUEST['nombre']) != null) {
 
                 return false;
             } else {
@@ -37,7 +38,7 @@ $errores = "";
 switch ($accion) {
     case "Añadir Producto":
         //comprueba que estan todos los datos introducidos
-        if (isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio'])) {
+        if (isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
             //hacemos las validaciones correspondientes y si no se cumplen te vuelve a la pantalla de añadir
             if (comprobar("nombre")) {
                 if (comprobar("descripcion")) {
@@ -55,18 +56,18 @@ switch ($accion) {
             }
         }
         if ($errores != "") {
-            header("Location: ../Vista/VistaEditarProducto.php?" . "error=" . $errores);
+            header("Location: ../Vista/AnadirProducto.php?" . "error=" . $errores);
         }
 
         break;
 
     case "Editar Producto":
-        if (isset($_REQUEST['idProducto']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio'])) {
+        if (isset($_REQUEST['idProducto']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['precio']) && isset($_FILES['imagen'])) {
             if (comprobar("nombre")) {
                 if (comprobar("descripcion")) {
                     if (comprobar("precio")) {
                         $controladorProducto->updateProduct($_REQUEST['idProducto'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], null);
-                        header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProduct'] . "&exito=Producto editado correctamente");
+                        header("Location: ../Vista/VistaEditarProducto.php?idProducto=" . $_REQUEST['idProducto'] . "&exito=Producto editado correctamente");
                     } else {
                         $errores .= "El precio debe se un número positivo";
                     }
@@ -74,14 +75,14 @@ switch ($accion) {
                     $errores .= "Rellena la descripción";
                 }
             } else {
-                $errores .= "El nombre no puede estar vacío";
+                $errores .= "El nombre del producto no es valido o ya hay un nombre igual en la base de datos";
             }
         } else {
             $errores .= "Error al editar el producto";
         }
 
         if ($errores != "") {
-            header("Location: ../Vista/VistaEditarProducto.php?idProduct=" . $_REQUEST['idProducto'] . "&error=" . $errores);
+            header("Location: ../Vista/VistaEditarProducto.php?idProducto=" . $_REQUEST['idProducto'] . "&error=" . $errores);
         }
         break;
 

@@ -15,7 +15,7 @@ class ControlSubidaArchivo
     {
         print "Nombre de fichero: " . $_FILES['imagen']['name'] . "<br>";
         print "Tipo : " . $_FILES['imagen']['type'] . "<br>";
-        print "Tamaño : " . $_FILES['imagen']['size'] . "<br>";
+        print "Tamano : " . $_FILES['imagen']['size'] . "<br>";
         print "Nombre temporal: " . $_FILES['imagen']['tmp_name'] . "<br>";
         print "Error : " . $_FILES['imagen']['error'] . "<br>";
         print "Ruta completa: " . $this->rutaCompleta . "<br>";

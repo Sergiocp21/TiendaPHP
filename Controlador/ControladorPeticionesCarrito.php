@@ -12,7 +12,7 @@ if (isset($_SESSION["Carrito"])) {
         case "Comprar":
             $idProducto = $_POST["idProducto"];
             $ControladorCarrito->addProduct($idProducto);
-            header("Location: ../Vista/VistaDetalleProducto.php?idProducto=$idProducto&exito=Producto añadido correctamente al carrito"); //Al mismo producto
+            header("Location: ../Vista/VistaDetalleProducto.php?idProducto=$idProducto&exito=Producto anadido correctamente al carrito"); //Al mismo producto
 
         break;
 

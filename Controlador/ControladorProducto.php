@@ -31,7 +31,7 @@ class ControladorProducto
         return $this->daoProducto->getProductByName($nombre);
     }
 
-    //Añade un producto
+    //Anade un producto
     public function addProduct($nombre, $descripcion, $precio, $clienteId)
     {
         $ruta = $this->controlSubidaArchivo->proceso();

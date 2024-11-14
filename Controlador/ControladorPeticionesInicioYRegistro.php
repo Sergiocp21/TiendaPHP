@@ -49,7 +49,7 @@ switch ($accion) {
                 $errores .= "El apellido no es válido. <br>";
             }
             if (!comprobar("password", $controladorCliente)) {
-                $errores .= "La contraseña no es válida. <br>";
+                $errores .= "La contrasena no es válida. <br>";
             }
             if (!comprobar("telefono", $controladorCliente)) {
                 $errores .= "El teléfono no es válido. <br>";

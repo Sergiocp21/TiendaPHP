@@ -21,7 +21,7 @@
     <form action="../Controlador/ControladorPeticionesInicioYRegistro.php" method="POST">
         <label for="nickname">Nickname</label>
         <input type="text" name="nickname">
-        <label for="password">Contraseña</label>
+        <label for="password">Contrasena</label>
         <input type="password" name="password">
         <input type="submit" value="Iniciar Sesion" name="registroIniciar">
     </form>

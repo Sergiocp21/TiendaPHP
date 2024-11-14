@@ -55,7 +55,7 @@ if (!isset($_SESSION['cliente'])) {
     <section class="productos">
         <?php
         $productos = $daoProducto->getAllProducts();
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             $producto = $productos[$i];
             echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
             echo "<div class='producto'>";

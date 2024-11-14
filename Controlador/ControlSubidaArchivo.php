@@ -71,15 +71,10 @@ class ControlSubidaArchivo
 
     public function proceso()
     {
-
-        if ($this->comprobarExiste()) {
-            if ($this->comprobarImagen()) {
-                if ($this->tipoImagen()) {
-                    if ($this->moverImagen()) {
-                        return $this->getRutaCompleta();
-                    } else {
-                        return -4;
-                    }
+        if ($this->comprobarImagen()) {
+            if ($this->tipoImagen()) {
+                if ($this->moverImagen()) {
+                    return $this->getRutaCompleta();
                 } else {
                     return -3;
                 }
@@ -89,6 +84,7 @@ class ControlSubidaArchivo
         } else {
             return -1;
         }
+
     }
     public function getRutaCompleta(): string
     {

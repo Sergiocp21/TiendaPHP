@@ -53,6 +53,10 @@
         if (isset($_GET['Error'])) {
             echo "<p style='color:red'>" . $_GET['Error'] . "</p>";
         }
+
+        if (isset($_GET['exito'])) {
+            echo "<p style='color:green'>" . $_GET['exito'] . "</p>";
+        }
         ?>
     </form>
 

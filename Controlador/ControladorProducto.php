@@ -1,12 +1,17 @@
 <?php
 require '../Modelo/DAOProducto.php';
+require 'ControlSubidaArchivo.php';
+
+
 class ControladorProducto
 {
     private $daoProducto;
+    private $controlSubidaArchivo;
 
     public function __construct()
     {
         $this->daoProducto = new DAOProducto();
+        $this->controlSubidaArchivo = new ControlSubidaArchivo();
     }
 
     //Devuelve todos los productos
@@ -21,18 +26,26 @@ class ControladorProducto
         return $this->daoProducto->getProductById($id);
     }
 
-    //Añade un producto
+    public function getProductByName($nombre)
+    {
+        return $this->daoProducto->getProductByName($nombre);
+    }
+
+    //Anade un producto
     public function addProduct($nombre, $descripcion, $precio, $clienteId)
     {
-        $producto = new DTOProducto(null, $nombre, $descripcion, $precio, $clienteId);
-
+        $ruta = $this->controlSubidaArchivo->proceso();
+        $producto = new DTOProducto(null, $nombre, $descripcion, $precio, $clienteId, $ruta);
+        //$producto->setImagen($ruta);
         return $this->daoProducto->addProduct($producto);
     }
 
     //Actualiza un producto dado todos sus valores
     public function updateProduct($id, $nombre, $descripcion, $precio, $clienteId)
     {
-        $producto = new DTOProducto($id, $nombre, $descripcion, $precio, $clienteId);
+        $ruta = $this->controlSubidaArchivo->proceso();
+        $producto = new DTOProducto($id, $nombre, $descripcion, $precio, $clienteId, $ruta);
+        //$producto->setImagen($ruta);
 
         return $this->daoProducto->updateProduct($producto);
     }

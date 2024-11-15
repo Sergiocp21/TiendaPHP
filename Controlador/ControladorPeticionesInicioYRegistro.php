@@ -39,7 +39,7 @@ function comprobar($campo, $controladorCliente)
 
 
 switch ($accion) {
-    case "registro": //Viene de la vista RegistroUsuario
+    case "registro": //Viene de la vista RegistroCLientes
         if (isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['password']) && isset($_REQUEST['domicilio']) && isset($_REQUEST['telefono']) && isset($_REQUEST['nickname'])) {
             $errores = "";
             if (!comprobar("nombre", $controladorCliente)) {
@@ -49,7 +49,7 @@ switch ($accion) {
                 $errores .= "El apellido no es válido. <br>";
             }
             if (!comprobar("password", $controladorCliente)) {
-                $errores .= "La contraseña no es válida. <br>";
+                $errores .= "La contrasena no es válida. <br>";
             }
             if (!comprobar("telefono", $controladorCliente)) {
                 $errores .= "El teléfono no es válido. <br>";

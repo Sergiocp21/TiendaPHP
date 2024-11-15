@@ -16,12 +16,12 @@ class DAOProducto
     public function getAllProducts()
     {
         try {
-            $stmt = $this->db->prepare("SELECT * FROM productos");
+            $stmt = $this->db->prepare("SELECT * FROM producto");
             $stmt->execute();
             $productos = array();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['id_cliente']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 $productos[] = $producto;
             }
             return $productos;
@@ -34,12 +34,30 @@ class DAOProducto
     public function getProductById($id)
     {
         try {
-            $stmt = $this->db->prepare("SELECT * FROM productos WHERE id = :id");
+            $stmt = $this->db->prepare("SELECT * FROM producto WHERE id = :id");
             $stmt->execute([':id' => $id]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['id_cliente']);
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
+                return $producto;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function getProductByName($nombre)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM producto WHERE nombre = :nombre");
+            $stmt->execute([':nombre' => $nombre]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                $producto = new DTOProducto($row['id'], $row['nombre'], $row['descripcion'], $row['precio'], $row['cliente_id'], $row['imagen']);
                 return $producto;
             } else {
                 return null;
@@ -52,12 +70,13 @@ class DAOProducto
     public function addProduct(DTOProducto $producto)
     {
         try {
-            $stmt = $this->db->prepare("INSERT INTO productos (nombre, descripcion, precio, id_cliente) VALUES (:nombre, :descripcion, :precio, :id_cliente)");
+            $stmt = $this->db->prepare("INSERT INTO producto (nombre, descripcion, precio, cliente_id, imagen) VALUES (:nombre, :descripcion, :precio, :cliente_id, :imagen)");
             $stmt->execute([
                 ':nombre' => $producto->getNombre(),
                 ':descripcion' => $producto->getDescripcion(),
                 ':precio' => $producto->getPrecio(),
-                ':id_cliente' => $producto->getClienteId(),
+                ':cliente_id' => $producto->getClienteId(),
+                ':imagen' => $producto->getImagen()
             ]);
             return $this->db->lastInsertId();
         } catch (PDOException $e) {
@@ -69,13 +88,14 @@ class DAOProducto
     public function updateProduct(DTOProducto $producto)
     {
         try {
-            $stmt = $this->db->prepare("UPDATE productos SET nombre = :nombre, descripcion = :descripcion, precio = :precio, id_cliente = :id_cliente WHERE id = :id");
+            $stmt = $this->db->prepare("UPDATE producto SET nombre = :nombre, descripcion = :descripcion, precio = :precio, cliente_id = :cliente_id, imagen = :imagen WHERE id = :id");
             $stmt->execute([
                 ':nombre' => $producto->getNombre(),
                 ':descripcion' => $producto->getDescripcion(),
                 ':precio' => $producto->getPrecio(),
-                ':id_cliente' => $producto->getClienteId(),
+                ':cliente_id' => $producto->getClienteId(),
                 ':id' => $producto->getId(),
+                ':imagen' => $producto->getImagen()
             ]);
             return true;
 
@@ -88,7 +108,7 @@ class DAOProducto
     public function deleteProduct($id)
     {
         try {
-            $stmt = $this->db->prepare("DELETE FROM productos WHERE id = :id");
+            $stmt = $this->db->prepare("DELETE FROM producto WHERE id = :id");
             $stmt->execute([':id' => $id]);
             return true;
         } catch (PDOException $e) {

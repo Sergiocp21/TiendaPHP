@@ -1,33 +1,18 @@
-<?php
-require_once '../Modelo/DAOProducto.php';
-require_once '../Modelo/Carrito.php';
-require_once "../Modelo/DTOCliente.php";
-require_once '../Controlador/ControladorCliente.php';
-$daoProducto = new DAOProducto();
-
-
-session_start();
-
-
-if (!isset($_SESSION['cliente'])) {
-    header("Location: ../Vista/VistaInicioSesion.php?error=Debes iniciar sesion primero");
-    exit;
-}
-
-?>
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online</title>
+    <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <?php
+    require_once "../Controlador/ControladorProducto.php";
+    session_start();
+    ?>
 </head>
 
 <body>
-
     <header class="header">
         <h1>TIENDA ONLINE</h1>
     </header>
@@ -45,35 +30,32 @@ if (!isset($_SESSION['cliente'])) {
         </ul>
     </nav>
 
-    <div>
-        <?php
-        echo "Bienvenido, " . $_SESSION['cliente']->getNombre();
-        ?>
-    </div>
-
-    <h2 align="CENTER">SUPERMERCADO</h2>
+    <h2>Productos</h2>
     <section class="productos">
         <?php
-        $productos = $daoProducto->getAllProducts();
-        for ($i = 0; $i < 3; $i++) {
-            $producto = $productos[$i];
+
+        $controladorProducto = new ControladorProducto();
+        $productos = $controladorProducto->getAllProducts();
+
+        foreach ($productos as $producto) {
             echo "<a href='../Vista/vistaDetalleProducto.php?idProducto=" . $producto->getId() . "'>";
             echo "<div class='producto'>";
 
             echo "<img src='" . $producto->getImagen() . "' alt='" . $producto->getNombre() . "'>";
             echo "<p>" . $producto->getNombre() . "</p>";
-            echo "<p>Precio: " . $producto->getPrecio() . "€</p>";
             if ($producto->getPrecio() <= 10) {
                 echo "<span>¡Producto de oferta!</span>";
             } else if ($producto->getPrecio() > 200) {
                 echo "<span>¡Producto de calidad!</span>";
             }
+            echo "<span> Precio: " . $producto->getPrecio() . "€</span>";
 
             echo "</div>";
             echo "</a>";
-
         }
+
         ?>
+
     </section>
 
     <footer class="footer">

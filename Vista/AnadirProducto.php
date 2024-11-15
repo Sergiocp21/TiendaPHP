@@ -50,8 +50,8 @@
 
         <input type="submit" value="Añadir Producto" name="gestionProductos">
         <?php
-        if (isset($_GET['Error'])) {
-            echo "<p style='color:red'>" . $_GET['Error'] . "</p>";
+        if (isset($_GET['error'])) {
+            echo "<p style='color:red'>" . $_GET['error'] . "</p>";
         }
 
         if (isset($_GET['exito'])) {

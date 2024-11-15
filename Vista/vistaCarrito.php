@@ -14,6 +14,7 @@
 
     $controladorProducto = new ControladorProducto();
     $controladorCarrito = new ControladorCarrito();
+    $costeCarrito = 0;
     ?>
 </head>
 
@@ -41,6 +42,7 @@
         if (isset($_SESSION['Carrito'])) {
             $producto = $controladorCarrito->getIdProducts();
             if (count($producto) > 0) {
+                $costeCarrito = 0;
                 foreach ($producto as $idProducto) {
                     $producto = $controladorProducto->getProductById($idProducto);
 
@@ -49,9 +51,16 @@
                     <a href='../Vista/VistaDetalleProducto.php?idProducto=" . $idProducto . "'>
                     <img src='" . $producto->getImagen() . "' alt='Imagen del producto'>
                     <p>" . $producto->getNombre() . "
-                    
-                    
-                    <form action='../Controlador/ControladorPeticionesCarrito.php' method='post'>
+                    <span>" . $producto->getPrecio() . "€</span>
+                    ";
+                    $costeCarrito += $producto->getPrecio();
+                    if ($producto->getPrecio() <= 10) {
+                        echo "<span>¡Oferta!</span>";
+                    } else if ($producto->getPrecio() > 200) {
+                        echo "<span>Producto de calidad</span>";
+                    }
+
+                    echo "<form action='../Controlador/ControladorPeticionesCarrito.php' method='post'>
                     
                     <input type='hidden' name='id_producto' value='" . $idProducto . "'>
                     
@@ -62,6 +71,7 @@
                     
                     ";
                 }
+
             } else {
                 echo "<p>El carrito esta vacío</p>";
             }
@@ -70,6 +80,11 @@
         ?>
     </section>
 
+    <?php
+    if ($costeCarrito > 0) {
+        echo "<span>Coste total: " . $costeCarrito . "€</span>";
+    }
+    ?>
     <form action='../Controlador/ControladorPeticionesCarrito.php' method='post'>
         <input type='submit' name='accion' value='Vaciar carrito'>
     </form>
